@@ -2,6 +2,7 @@
 
 ## Features
 
+* **css:** Add styled checkboxes and radio buttons (#439)
 * **css:** Tweak form error styles (#508)
 * **css:** (breaking) Add styled text inputs (#430)
 * **css:** Button style updates. (#429)
