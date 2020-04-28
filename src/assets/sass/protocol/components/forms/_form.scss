@@ -1,0 +1,171 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../includes/lib';
+@import '../../includes/forms/lib';
+
+/*
+Basic atoms that make up a form
+- form
+    - form
+    - form-heading
+    - form-intro
+    - form-footer
+- field
+    - field-set
+    - field
+    - field-label
+    - field-control
+    - field-info
+*/
+
+
+.mzp-c-form {
+    color: $form-text;
+    margin-bottom: $field-v-spacing;
+
+    // &.mzp-t-dark {
+    //     &,
+    //     & fieldset,
+    //     & legend,
+    //     & label {
+    //         color: $color-white;
+    //     }
+    // }
+
+    // if we're using the form component bottom spacing comes from `field` and `choice` components
+    fieldset {
+        margin-bottom: 0;
+    }
+}
+
+.mzp-c-form-footer {
+    padding-top: $spacing-xl;
+
+    .mzp-c-form-field + & {
+        padding-top: calc(#{$line-height-shim} + #{$spacing-xl - $field-v-spacing});
+    }
+}
+
+
+// heading
+
+.mzp-c-form-heading,
+legend.mzp-c-form-heading {
+    @include text-title-xs;
+    color: $color-black;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: $spacing-lg;
+
+    .mzp-t-firefox & {
+        @include font-firefox;
+        color: $color-ink-80;
+    }
+
+    .mzp-t-mozilla & {
+        @include font-mozilla;
+    }
+
+    // .mzp-t-dark &,
+    // .mzp-t-dark.mzp-t-firefox &,
+    // .mzp-t-firefox .mzp-t-dark & {
+    //     color: $color-white;
+    // }
+}
+
+legend.mzp-c-form-heading {
+    float: left;
+    width: 100%;
+}
+
+.mzp-c-form-intro {
+    margin-bottom: 0;
+    padding-bottom: $spacing-lg;
+
+    .mzp-c-form-heading + &,
+    & + & {
+        margin-top: $spacing-md * -1;
+    }
+}
+
+// field
+.mzp-c-form-field {
+    margin: 0;
+    max-width: 100%;
+    padding-bottom: $field-v-spacing;
+
+    button {
+        margin-bottom: 0;
+    }
+
+    textarea,
+    select,
+    input[list],
+    input[type='color'],
+    input[type='date'],
+    input[type='email'],
+    input[type='file'],
+    input[type='number'],
+    input[type='password'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='text'],
+    input[type='time'],
+    input[type='url'] {
+        margin-bottom: 0; // bottom margin is on the parent element now
+    }
+}
+
+// labels
+.mzp-c-form-label {
+    @include form-label;
+}
+
+legend.mzp-c-form-label {
+    float: left;
+    width: 100%;
+}
+
+// infos
+.mzp-c-form-info {
+    @include form-info;
+    margin: 0; // remove default element margin (eg paragraph)
+
+    .mzp-c-form-field + &,
+    .mzp-c-choices + & {
+        margin-top: $field-v-spacing * -1 + $info-v-spacing;
+    }
+
+    .mzp-c-form-control + & {
+        padding-top: $info-v-spacing;
+    }
+
+    .mzp-c-form-msg + & {
+        padding-top: $spacing-xs;
+    }
+
+    .mzp-c-form-group + &,
+    .mzp-c-form-row + & {
+        margin-top: ($field-v-spacing * -1) + $spacing-sm; // TODO: verrify
+    }
+
+    .mzp-c-choice-label + & {
+        padding-top: $info-v-spacing;
+        @include bidi(((padding-left, $choice-spacing, padding-right, 0),));
+    }
+
+    .mzp-c-choice + & {
+        margin-top: $label-v-spacing * -1;
+        @include bidi(((padding-left, $choice-spacing, padding-right, 0),));
+    }
+
+    &.mzp-t-sm {
+        @include text-body-xs;
+    }
+
+    .mzp-c-button + & {
+        padding-top: $info-v-spacing;
+    }
+}
